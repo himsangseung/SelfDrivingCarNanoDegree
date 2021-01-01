@@ -4,4 +4,7 @@ CarND-Traffic-Sign-Classifier-Project/checkpoint
 CarND-Traffic-Sign-Classifier-Project/.ipynb_checkpoints
 *.p
 *.swp
+*.swo
+*.swn
+*.swm
 term2_sim_linux

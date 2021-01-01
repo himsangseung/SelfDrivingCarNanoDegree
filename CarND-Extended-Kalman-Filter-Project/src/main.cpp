@@ -109,8 +109,6 @@ int main() {
           
 	  fusionEKF.ProcessMeasurement(meas_package);
           // Push the current estimated x,y positon from the Kalman filter's 
-          //   state vector
-
           VectorXd estimate(4);
           double p_x = fusionEKF.ekf_.x_(0);
           double p_y = fusionEKF.ekf_.x_(1);
@@ -120,10 +118,10 @@ int main() {
           estimate(0) = p_x;
           estimate(1) = p_y;
           estimate(2) = v1;
-          estimate(3) = v2;
-        
+          estimate(3) = v2; 
           estimations.push_back(estimate);
 
+	  // Calculate RMSE btw estimations & ground_truth
           VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
 
           json msgJson;
@@ -134,9 +132,8 @@ int main() {
           msgJson["rmse_vx"] = RMSE(2);
           msgJson["rmse_vy"] = RMSE(3);
           auto msg = "42[\"estimate_marker\"," + msgJson.dump() + "]";
-	  // std::cout << msg << std::endl;
-          ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
-	  // std::cout << "after  ws.send() in main.cpp" << std::endl;
+          
+	  ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }  // end "telemetry" if
 
       } else {

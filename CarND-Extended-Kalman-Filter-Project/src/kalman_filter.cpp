@@ -27,9 +27,9 @@ void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
 
 void KalmanFilter::Predict() {
   /**
-   * TODO: predict the state
-   */
-  /*
+   * predict the state
+   *
+   *
   we are using a linear model for the prediction step. 
   So, for the prediction step, we can still use the regular Kalman filter 
   equations - F matrix rather than the extended Kalman filter equation
@@ -41,7 +41,7 @@ void KalmanFilter::Predict() {
 
 void KalmanFilter::Update(const VectorXd &z) {
   /**
-   * TODO: update the state by using Kalman Filter equations
+   * update the state by using Kalman Filter equations
    */
   VectorXd z_pred = H_ * x_;
   VectorXd y = z - z_pred;
@@ -50,7 +50,7 @@ void KalmanFilter::Update(const VectorXd &z) {
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
   /**
-   * TODO: update the state by using Extended Kalman Filter equations
+   * update the state by using Extended Kalman Filter equations
    */
 
   // H_.inverse() as an alternateive- not used: z_pred = H_ *x_
@@ -72,7 +72,6 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   // In C++, atan2() returns values between -pi and pi, ...
   // When calculating phi in y = z - h(x).
   // We can add 2pi or subtract 2pi until the angle is within the range
-  if ( (y(1) > M_PI) || (y(1) <-M_PI) ) std::cout << "y(1): " << y(1) <<std::endl;
   while (y(1) >  M_PI) y(1) -= 2 * M_PI;
   while (y(1) < -M_PI) y(1) += 2 * M_PI;
    
