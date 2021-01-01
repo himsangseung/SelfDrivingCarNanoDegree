@@ -1,0 +1,7 @@
+.set_git.sh.swp
+*.zip
+CarND-Traffic-Sign-Classifier-Project/checkpoint
+CarND-Traffic-Sign-Classifier-Project/.ipynb_checkpoints
+*.p
+*.swp
+term2_sim_linux
