@@ -104,7 +104,8 @@ int main() {
             LandmarkObs obs;
             obs.x = x_sense[i];
             obs.y = y_sense[i];
-            noisy_observations.push_back(obs);
+            
+	    noisy_observations.push_back(obs);
           }
 
           // Update the weights and resample
@@ -129,6 +130,10 @@ int main() {
 
           std::cout << "highest w " << highest_weight << std::endl;
           std::cout << "average w " << weight_sum/num_particles << std::endl;
+	  // reset each weight
+          for (size_t i = 0; i < particles.size(); i++) {
+            particles[i].weight = 1.0;
+          }
 
           json msgJson;
           msgJson["best_particle_x"] = best_particle.x;
