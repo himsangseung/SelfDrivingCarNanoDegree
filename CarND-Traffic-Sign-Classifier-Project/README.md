@@ -4,21 +4,15 @@
 
 **Build a Traffic Sign Recognition Project**
 
-The goals / steps of this project are the following:
-* Load the data set (see below for links to the project data set)
-* Explore, summarize and visualize the data set
-* Design, train and test a model architecture
-* Use the model to make predictions on new images
-* Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
-
 ---
 ### Overview
 
 This project focuses on exploring techniques and knowledge in deep neural networks and convolutional neural networks to classify traffic signs. Structure of the flow includes training a model, decode traffic signs from natural images by using the German Traffic Sign Dataset, testing the model program on new images of traffic signs found on the web. This project's source code is found in Traffic_Sign_Classifier.ipynb. The trained model from this project showed a satisfying performance with the following result: 
 * training set accuracy of 1.000
-* validation set accuracy of 0.949 
-* test set accuracy of 0.940
+* validation set accuracy of 0.952 
+* test set accuracy of 0.941
+
+
 
 As for convolutional neural network structure, LeNet, a convolutional neural network structure proposed by Yann LeCun et al is used as a guideline, while Tensor Flow was used as a primary tool in this project.
 
@@ -189,8 +183,8 @@ BATCH_SIZE = 128
 
 My final model results were:
 * training set accuracy of 1.000
-* validation set accuracy of 0.949 
-* test set accuracy of 0.940
+* validation set accuracy of 0.952 
+* test set accuracy of 0.941
 
 <figure style="align: center; text-align:center;">
   <img src="./examples/valAccuracy.png" width="1200" height="500" />
@@ -219,9 +213,9 @@ def preProcess(color_images):
     normalized = (grayscaled - 128) / 128 
     return normalized_images
 ```
-
 Above pre-processing step resulted in low accuracy on both training and validation set, therefore, grayscaling and using actual mean and standard deviation for getting mean zero and equal variance is used as a final pre-processing step to improve under fitting - also increased learning rate and epochs here in the step. Later on, dropout regularization step is added to prevent over fitting, as training accuracy went over 0.99 but validation accurate only around 0.90 - along with 2 RELU, 1 max pooling operations to improve over fitting. Dimensions of filters in Convolutional layer needed to be taken care of carefully, as they dramatically affect the accuracy result without giving obvious sense of being off values, or yield an error sometimes brute force method had to be used for guessing the right input values going in eg) filter size.
  
+The network architecture has been benchmarked from *Sermanet, Yann'sTraffic Sign Recognition With Multi-Scale Convolutional Networks'*, which had implemented it using simple two-stage ConvNet and subsamplings then leading to one full connection. The use of CNN is particularly useful here because of the advantage of adaptive filters with large sample data.The batch size is adjusted to 128 so it runs at an adaquate speed within Computer's memory lmit.
 
 ### Test a Model on New Images
 
