@@ -6,18 +6,18 @@ Self-Driving Car Engineer Nanodegree Program
 
 This project focuses on PID controller implementation in C++, controlling steering value based on CTE(Cross Track Error) returned from each simulationcycle.
 
-# PID Controller
+## PID Controller
 
 PID(Proportional, Integral, Derivative) controller is one of simple and robust feedback controllers. It takes in some form of error function, CTE in this project, and calculates error on each P,I, and I so it can be multiplied by each PID gains for steering value update as output.
 
-# PID Hyperparameters
+## PID Hyperparameters
 
 It is important yet often times difficult task to tune PID gains:
-1. **P(Proportional) Gain** contributes to how quickly the updated value could reach the desired output, therefore often times decreasing rise time but increasing a chance of overshooting.
+1. **P (Proportional) Gain** contributes to how quickly the updated value could reach the desired output, therefore often times decreasing rise time but increasing a chance of overshooting.
 
-2. **I(Integral) Gain** many times is often to eliminate steady-state error, a form of bias coming from offset values being unintentionally set during the simulation.
+2. **I (Integral) Gain** many times is often to eliminate steady-state error, a form of bias coming from offset values being unintentionally set during the simulation.
 
-3. **D(Derivative) Gain** plays a big role in decreasing an overshoot, often times coming from increased P gain. It also helps reduing settling time.
+3. **D (Derivative) Gain** plays a big role in decreasing an overshoot, often times coming from increased P gain. It also helps reduing settling time.
 
 In this project, manual tuning method has been used as from iterative output checks. P gain was first adjusted so the car would show enough steering power for sharp curves over the road, then D gain for regulating oscillations, overshooting. Lastly, I gain was tuned so that the Car wouln't stick too close to one edge of the lane, ultimately wanting to stay in the center of the lane.
 
