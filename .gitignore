@@ -4,7 +4,9 @@ CarND-Traffic-Sign-Classifier-Project/checkpoint
 CarND-Traffic-Sign-Classifier-Project/.ipynb_checkpoints
 CarND-Extended-Kalman-Filter-Project/Release/
 CarND-Extended-Kalman-Filter-Project/Debug/
+CarND-Extended-Kalman-Filter-Project/build/*
 CarND-Kidnapped-Vehicle-Project/Release/
+CarND-Kidnapped-Vehicle-Project/build/*
 *.p
 *.cpp.o
 *.o
@@ -16,4 +18,6 @@ CarND-Kidnapped-Vehicle-Project/Release/
 *.so
 *bin
 term2_sim_linux
+term3_sim_linux
 .desktop
+CarND-Path-Planning-Project/build/*
