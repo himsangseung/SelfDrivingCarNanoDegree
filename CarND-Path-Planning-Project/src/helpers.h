@@ -5,6 +5,14 @@
 #include <string>
 #include <vector>
 
+#define period 0.02 	   // simulation cycle period
+#define laneWidth 4.0      // each of a lane width
+#define speedLimit 49      // speed limit set on road < 50 mph
+#define slowDownDist 5     // threshold on target distance to slow down
+#define safeDistFront 20   // front safety distance threshold
+#define safeDistLR 10      // left Right safety distance threshold
+#define velIncrement 0.224 // host veh speed increment per cycle
+
 // for convenience
 using std::string;
 using std::vector;
@@ -152,6 +160,22 @@ vector<double> getXY(double s, double d, const vector<double> &maps_s,
   double y = seg_y + d*sin(perp_heading);
 
   return {x,y};
+}
+
+// checking if the Frenet d offset is within the lane
+bool inLane(int lane, double d)
+{
+  return d < (laneWidth * (lane + 1)) && d > (laneWidth * lane);
+}
+
+bool inSafetyDistLR (double s, double car_s)
+{
+  return abs(s - car_s) < safeDistLR;
+}
+
+bool inSafetyDistFront (double s, double car_s)
+{
+  return (s > car_s) && (s - car_s < safeDistFront); 
 }
 
 #endif  // HELPERS_H
