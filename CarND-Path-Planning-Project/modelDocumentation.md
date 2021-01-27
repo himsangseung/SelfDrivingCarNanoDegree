@@ -19,7 +19,7 @@ From the simulator, the following data are subscribed from the simulator:
 ## Criteria
 
 ## Max Acceleration and jerk are not Exceeded
-the host car mainly drives along by setting reference velocity, which is initialized as 5 mph. This relatively low initial speed helps the car's acceleration and jerk under each 10 m/s^2 and 10 m/s^3. This then is updated based on speed of the preceding vehicle and the nearby vehicles on the neighbor lanes. 
+the host car mainly drives along by setting reference velocity, which is initialized as 0 mph. This relatively low initial speed helps the car's acceleration and jerk under each 10 m/s^2 and 10 m/s^3. This then is updated based on speed of the preceding vehicle and the nearby vehicles on the neighbor lanes. 
 
 ## The car drives according to the speed limit
 Simple speed control logic is implemented so that the speed is gradually decreased once the car reaches 95% of the max speed limit of 50 mph. The current apporach subtracts down the speed increment value of 0.224 per cycle.

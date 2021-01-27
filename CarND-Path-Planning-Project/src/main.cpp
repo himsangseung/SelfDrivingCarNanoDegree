@@ -52,7 +52,7 @@ int main() {
   }
 
   int lane = 1;       // start lane
-  double ref_vel = 5; // reference velocity at start (mph)
+  double ref_vel = 0; // reference velocity at start (mph)
 
   h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,
                &map_waypoints_dx,&map_waypoints_dy, &lane, &ref_vel]
@@ -185,19 +185,28 @@ int main() {
 	  // closest vehicle in the host lane < 5m, emergency break 
 	  if ((dist.size() != 0 && 
 	   *std::min_element(dist.begin(), dist.end()) < slowDownDist))
-	    ref_vel -= velIncrement * 3.0;
+	  {
+	     ref_vel -= velIncrement * 3.0;
+	  }
 	  // keep the speed below the limit
-	  else if (car_speed > speedLimit * 0.95)
-	    ref_vel -= velIncrement;
+	  else if (car_speed > speedLimit * 0.8)
+	  {
+	     ref_vel -= velIncrement;
+	  }
 	  // too-close and speed limit flag, gradually slowing down
+	  else if (tooCloseFront && tooCloseLR)
+	  {
+	     ref_vel -= velIncrement * 2.0;
+	  }
 	  else if (tooCloseFront || tooCloseLR) 
+	  {
 	    ref_vel -= velIncrement;
+	  }
 	  // within speed limit, gradually speed up
-	  else if (car_speed < speedLimit * 0.8)
-	    ref_vel += velIncrement; 
 	  else 
+	  {
 	    ref_vel += velIncrement;
-
+	  }
 	  vector<double> ptsx;
 	  vector<double> ptsy;
 	  // reference x,y, yawrate
@@ -241,13 +250,13 @@ int main() {
 	
 	  // In Frenet add evenly 30m spaced points ahead of the starting
 	  // reference
-	  vector<double> next_wp0 = getXY(car_s+30, laneWidth*(1/2+lane), 
+	  vector<double> next_wp0 = getXY(car_s+30, 2.0 + 4.0 * lane,
 	      map_waypoints_s, map_waypoints_x, map_waypoints_y);
 	  
-	  vector<double> next_wp1 = getXY(car_s+60, laneWidth*(1/2+lane),
+	  vector<double> next_wp1 = getXY(car_s+60, 2.0 + 4.0 * lane,
               map_waypoints_s, map_waypoints_x, map_waypoints_y);
 
-	  vector<double> next_wp2 = getXY(car_s+90, laneWidth*(1/2+lane), 
+	  vector<double> next_wp2 = getXY(car_s+90, 2.0 + 4.0 * lane, 
               map_waypoints_s, map_waypoints_x, map_waypoints_y);
 	  
 	  ptsx.emplace_back(next_wp0[0]);

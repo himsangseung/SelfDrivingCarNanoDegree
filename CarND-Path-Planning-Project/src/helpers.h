@@ -10,8 +10,8 @@
 #define speedLimit 49      // speed limit set on road < 50 mph
 #define slowDownDist 5     // threshold on target distance to slow down
 #define safeDistFront 20   // front safety distance threshold
-#define safeDistLR 10      // left Right safety distance threshold
-#define velIncrement 0.224 // host veh speed increment per cycle
+#define safeDistLR 15      // left Right safety distance threshold
+#define velIncrement 0.224 // vehicle speed increment step 
 
 // for convenience
 using std::string;
