@@ -19,6 +19,12 @@ CarND-Kidnapped-Vehicle-Project/build/*
 *bin
 term2_sim_linux
 term3_sim_linux
+beta_simulator_linux
+
 .desktop
 CarND-Path-Planning-Project/build/*
+CarND-Path-Planning-Project/*.mkv
 CarND-PID-Control-Project/build/*
+CarND-Behavioral-Cloning-P3/data/*
+CarND-Behavioral-Cloning-P3/src/Release.key
+CarND-Behavioral-Cloning-P3/src/get-pip.py
