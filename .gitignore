@@ -17,9 +17,11 @@ CarND-Kidnapped-Vehicle-Project/build/*
 *.swm
 *.so
 *bin
+*.pyc
 term2_sim_linux
 term3_sim_linux
 beta_simulator_linux
+Demo
 
 .desktop
 CarND-Path-Planning-Project/build/*
@@ -28,3 +30,8 @@ CarND-PID-Control-Project/build/*
 CarND-Behavioral-Cloning-P3/data/*
 CarND-Behavioral-Cloning-P3/src/Release.key
 CarND-Behavioral-Cloning-P3/src/get-pip.py
+CarND-Capstone/ros/build/
+CarND-Capstone/ros/devel/
+linux_sys_int/
+!linux_sys_int/sys_int.x86_64
+
