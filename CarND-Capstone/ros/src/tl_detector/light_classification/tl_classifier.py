@@ -12,12 +12,6 @@ class TLClassifier(object):
         #TODO load classifier
         # light_config_str = rospy.get_param("/traffic_light_config")
         # self.config = yaml.safe_load(light_config_str)
-
-        # Graph - tf model loading
-        #self.is_site = self.config['is_site']
-
-        # added
-        # pass
         model_file = "frozen_inference_graph.pb" 
         self.current_light = TrafficLight.UNKNOWN
 
@@ -34,27 +28,18 @@ class TLClassifier(object):
                 od_graph_def.ParseFromString(serialized_graph)
                 tf.import_graph_def(od_graph_def, name='')
 
-        #self.category_index = {1: {'id': 1, 'name': 'Green'}, 2: {'id': 2, 'name': 'Red'}, 3: {'id': 3, 'name': 'Yellow'}, 4: {'id': 4, 'name': 'off'}}
-
         # Testing
         self.category_index = {1:"Green", 10:"Red"}
 
-        # tf detection session init
+        # tf detection session config 
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
 
         self.sess = tf.Session(graph=self.detection_graph, config=config)
 
-        # Definite input and output Tensors for detection_graph
-
+        # get tensor by name
         self.image_tensor = self.detection_graph.get_tensor_by_name('image_tensor:0')
-
-
-        # Each box represents a part of the image where a particular object was detected.
         self.detection_boxes = self.detection_graph.get_tensor_by_name('detection_boxes:0')
-
-        # Each score represent how level of confidence for each of the objects.
-        # Score is shown on the result image, together with the class label.
         self.detection_scores = self.detection_graph.get_tensor_by_name('detection_scores:0')
         self.detection_classes = self.detection_graph.get_tensor_by_name('detection_classes:0')
         self.num_detections = self.detection_graph.get_tensor_by_name('num_detections:0')
@@ -87,29 +72,21 @@ class TLClassifier(object):
         classes = np.squeeze(classes).astype(np.int32)
 
         min_score_thresh = .5
-        count = 0
-        count1 = 0
         class_name = 'Red'
         for i in range(boxes.shape[0]):
             if scores is None or scores[i] > min_score_thresh:
-                count1 += 1
-                rospy.loginfo("category_idx : %d", classes[i])
-                #class_name = self.category_index[classes[i]]['name']
-                class_name = self.category_index[classes[i]]
-                # Traffic light thing
-                if class_name == 'Red':
-                    count += 1
+                #rospy.loginfo("category_idx : %d", classes[i])
+                class_idx = classes[i]
+                if class_idx != 10 or class_idx != 1:
+                    class_idx = 10 # default - testing
 
-        # if count < count1 - count:
-        #    self.current_light = TrafficLight.GREEN
-        #else:
-        #     self.current_light = TrafficLight.RED
-        
+                class_name = self.category_index[class_idx]
+        # Testing Phase on detection logic - not accurate
         if class_name == 'Red':
             self.current_light = TrafficLight.RED
         else:
             self.current_light = TrafficLight.GREEN
 
         rospy.loginfo("curr_light: %d",self.current_light)
-        # return self.current_light
-        return TrafficLight.UNKNOWN
+        return self.current_light
+        # return TrafficLight.UNKNOWN

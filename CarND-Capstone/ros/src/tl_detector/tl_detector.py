@@ -17,17 +17,16 @@ STATE_COUNT_THRESHOLD = 3
 class TLDetector(object):
     def __init__(self):
         rospy.init_node('tl_detector')
-
+        
+        # Attributes Initializaiton
         self.pose = None
         self.waypoints = None
         self.camera_image = None
         self.lights = []
         self.waypoints_2d = None
         self.waypoint_tree = None
-
         self.state = TrafficLight.UNKNOWN
         self.state_count = 0
-
         self.last_state = TrafficLight.UNKNOWN
         self.last_wp = -1
 
@@ -35,9 +34,7 @@ class TLDetector(object):
         self.light_classifier = TLClassifier()
         self.listener = tf.TransformListener()
 
-        sub1 = rospy.Subscriber('/current_pose', PoseStamped, self.pose_cb)
-        sub2 = rospy.Subscriber('/base_waypoints', Lane, self.waypoints_cb)
-        
+        # Subscribe
         '''
         /vehicle/traffic_lights provides you with the location of the traffic light in 3D map space and
         helps you acquire an accurate ground truth data source for the traffic light
@@ -45,21 +42,25 @@ class TLDetector(object):
         simulator. When testing on the vehicle, the color state will not be available. You'll need to
         rely on the position of the light and the camera image to predict it.
         '''
+        sub1 = rospy.Subscriber('/current_pose', PoseStamped, self.pose_cb)
+        sub2 = rospy.Subscriber('/base_waypoints', Lane, self.waypoints_cb)
         sub3 = rospy.Subscriber('/vehicle/traffic_lights', TrafficLightArray, self.traffic_cb)
         sub6 = rospy.Subscriber('/image_color', Image, self.image_cb)
 
+        # Read in traffic light location from yaml file
         config_string = rospy.get_param("/traffic_light_config")
         self.config = yaml.load(config_string)
 
+        # Publish
         self.upcoming_red_light_pub = rospy.Publisher('/traffic_waypoint', Int32, queue_size=1)
-        self.bridge = CvBridge()
-        self.light_classifier = TLClassifier()
-        self.listener = tf.TransformListener()
-
-        self.state = TrafficLight.UNKNOWN
-        self.last_state = TrafficLight.UNKNOWN
-        self.last_wp = -1
-        self.state_count = 0
+        
+        #self.bridge = CvBridge()
+        #self.light_classifier = TLClassifier()
+        #self.listener = tf.TransformListener()
+        #self.state = TrafficLight.UNKNOWN
+        #self.last_state = TrafficLight.UNKNOWN
+        #self.last_wp = -1
+        #self.state_count = 0
 
         rospy.spin()
 
@@ -142,8 +143,6 @@ class TLDetector(object):
         img = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
 
         #Get classification
-        
-
         state= self.light_classifier.get_classification(img)
         return state
 
