@@ -34,7 +34,6 @@ class WaypointUpdater(object):
 
         # TODO: Add other member variables you need below
         self.pose = None
-        self.base_lane = None
         self.base_waypoints = None
         self.waypoints_2d = None
         self.waypoint_tree = None
@@ -54,12 +53,12 @@ class WaypointUpdater(object):
     def loop(self):
         rate = rospy.Rate(50)
         while not rospy.is_shutdown():
-            if self.pose and self.base_lane:#and self.base_waypoints and self.waypoint_tree:
+            if self.pose and self.base_waypoints and self.waypoint_tree:#and self.base_waypoints and self.waypoint_tree:
                 # Get closest waypoint
                 closest_waypoint_idx = self.get_closest_waypoint_idx()
                 self.publish_waypoints(closest_waypoint_idx)
                 rate.sleep()
-
+                
     def get_closest_waypoint_idx(self):
         x = self.pose.pose.position.x
         y = self.pose.pose.position.y
@@ -92,7 +91,7 @@ class WaypointUpdater(object):
 
        closest_idx = self.get_closest_waypoint_idx()
        furthest_idx = closest_idx + LOOKAHEAD_WPS
-       base_waypoints = self.base_lane.waypoints[closest_idx:furthest_idx]
+       base_waypoints = self.base_waypoints.waypoints[closest_idx:furthest_idx]
 
        if self.stopline_wp_idx == -1 or (self.stopline_wp_idx >= furthest_idx):
            lane.waypoints = base_waypoints
@@ -127,12 +126,11 @@ class WaypointUpdater(object):
         self.base_waypoints = waypoints
         if not self.waypoints_2d:
             self.waypoints_2d = [[waypoint.pose.pose.position.x, waypoint.pose.pose.position.y] for waypoint in waypoints.waypoints] ## after "for"needs modofication -ms
-        self.waypoint_tree = KDTree(self.waypoints_2d)
+            self.waypoint_tree = KDTree(self.waypoints_2d)
 
     def traffic_cb(self, msg):
         # TODO: Callback for /traffic_waypoint message. Implement
         self.stopline_wp_idx = msg.data
-
     def obstacle_cb(self, msg):
         # TODO: Callback for /obstacle_waypoint message. We will implement it later
         pass
