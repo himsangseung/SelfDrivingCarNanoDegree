@@ -18,6 +18,7 @@ CarND-Kidnapped-Vehicle-Project/build/*
 *.so
 *bin
 *.pyc
+*.tar.gz
 term2_sim_linux
 term3_sim_linux
 beta_simulator_linux
