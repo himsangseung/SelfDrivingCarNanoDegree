@@ -16,7 +16,8 @@ The goals / steps of this project are the following:
 [image4]: ./img/right.jpg "Recovery Image - right"
 [image6]: ./img/flip.png "Flip Image"
 [image7]: ./img/Loss_train_val.png "loss_val"
-[image8]: ./LeNet5.png "LeNet5 CNN architecture"
+[image8]: ./img/LeNet5.png "LeNet5 CNN architecture"
+[image9]: ./img/CNN.png "NVIDIA End-to-End CNN architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -47,7 +48,6 @@ By modern standards, LeNet-5 is a very simple network. It only has 7 layers, amo
 The next candidate has clear back-up work that explicitly depicts what this project is trying to acheive. The network architecture of interest has been proposed in "End-to-End Deep Learning for Self-Driving Cars" - Bojarski.M, etc. 
 This proposes a method of behavioral clonning by vision-only(three cameras), efficiently predicting steering command value. An explanation of this CNN architecture is shown below:
 
-[image9]: ./img/CNN.png "NVIDIA End-to-End CNN architecture"
 ![alt text][image9]
 
 [picture of NVIDIA CNN]
