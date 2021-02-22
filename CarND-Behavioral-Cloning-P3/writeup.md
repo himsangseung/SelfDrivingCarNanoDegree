@@ -76,13 +76,9 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to adopt a CNN architecture introduced in [NVIDIA's End-to-End Learning for Self-Driving Cars] by Bojarski.M, etc.
+The overall strategy for deriving a model architecture was to adopt a CNN architecture introduced in [NVIDIA's End-to-End Learning for Self-Driving Cars] by Bojarski.M, etc. I thought this model might be appropriate because it captures the solution to the problem statement explicitly, predicting steering commmand value with images from three cameras on a vehicle.
 
-I thought this model might be appropriate because it captures the solution to the problem statement explicitly, predicting steering commmand value with images from three cameras on a vehicle.
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that it contains dropout layer for a regularization technique, preventing overfitting.
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. To combat the overfitting, I modified the model so that it contains dropout layer for a regularization technique, preventing overfitting.
 
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track, to improve the driving behavior in these cases, I recorded some more videos with recovering from biased lane position.
 
@@ -121,7 +117,7 @@ I then recorded the vehicle recovering from the left side and right sides of the
 ![alt text][image3]
 ![alt text][image4]
 
-[Picture of image from left/right camera]]
+[Picture of image from left/right camera]
 
 Then I repeated this process on track two in order to get more data points.
 
