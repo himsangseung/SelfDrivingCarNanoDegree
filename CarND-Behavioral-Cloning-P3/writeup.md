@@ -12,7 +12,6 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image2]: ./img/center.jpg "Center Image"
-#[image2]: ./examples/placeholder.png "Grayscaling"
 [image3]: ./img/left.jpg "Recovery Image - left"
 [image4]: ./img/right.jpg "Recovery Image - right"
 [image6]: ./img/flip.png "Flip Image"
