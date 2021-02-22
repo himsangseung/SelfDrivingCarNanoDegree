@@ -132,7 +132,7 @@ After the collection process, I had 10031 number of data points. I then preproce
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5 as evidenced bythe loss plot below - train/validation set.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 4 as evidenced bythe loss plot below - train/validation set.
 ![alt text][image7]
 
 [loss plot - train/validation set]
