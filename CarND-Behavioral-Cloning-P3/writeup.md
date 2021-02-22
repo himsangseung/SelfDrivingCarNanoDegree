@@ -16,6 +16,7 @@ The goals / steps of this project are the following:
 [image4]: ./img/right.jpg "Recovery Image - right"
 [image6]: ./img/flip.png "Flip Image"
 [image7]: ./img/Loss_train_val.png "loss_val"
+[image8]: ./LeNet5.png "LeNet5 CNN architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -37,7 +38,6 @@ There are two major model architectures have been tested, and the one resulting 
 
 The first model architecture deployed is LeNet5 CNN architecture, a widely proven in MNist dataset as a classic classfication network - noting the intention to build a regression network with one output optimization. A description of the network is presented below:
 
-[image8]: ./LeNet5/.png "LeNet5 CNN architecture"
 ![alt text][image8]
 
 [picture of LeNet] - http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf]
@@ -121,7 +121,6 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
 Then I repeated this process on track two in order to get more data points.
 
