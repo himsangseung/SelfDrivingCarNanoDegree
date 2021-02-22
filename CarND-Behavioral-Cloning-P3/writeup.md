@@ -60,9 +60,7 @@ The model includes RELU layers to introduce nonlinearity (code line 85, 87, 89, 
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 88 and 97). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 1104). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model contains dropout layers in order to reduce overfitting (model.py lines 88 and 97). The model was trained and validated on different data sets to ensure that the model was not overfitting(code line 104). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
@@ -117,10 +115,13 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
+[Picture of image from the center camera]
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
 ![alt text][image3]
 ![alt text][image4]
+
+[Picture of image from left/right camera]]
 
 Then I repeated this process on track two in order to get more data points.
 
@@ -129,11 +130,15 @@ To augment the data sat, I also flipped images and angles so that a scenario wit
 ![alt text][image2]
 ![alt text][image6]
 
+[picture of original image and the horizontally flipped image]
+
 After the collection process, I had 10031 number of data points. I then preprocessed this data by adding a lambda layer in the model for image pixel normalization, then the image is cropped at (w=70, h=25) so that it would contain road lane images as its primary focus, filtering out unnecessary scenery such as the sky, trees, hills on the side, rocks, and etc.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5 as evidenced bythe loss plot below - train/validation set.
 ![alt text][image7]
+
+[loss plot - train/validation set]
 
 I used an adam optimizer so that manually training the learning rate wasn't necessary.
